@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react';
 
 import { APIError } from '../../constant/index';
 import api from '../libs/api';
-import { User } from '../type';
+import { IUser } from '../type';
 
 function Home() {
-  const [profile, setProfile] = useState<User>({
+  const [profile, setProfile] = useState<IUser>({
     username: '',
     email: '',
     phone: '',
@@ -28,7 +28,7 @@ function Home() {
     return data;
   }
 
-  async function updateUserData(user: User) {
+  async function updateUserData(user: IUser) {
     const { data } = await api.put('/api/user/update', user);
     return data;
   }
@@ -60,7 +60,7 @@ function Home() {
 
     // 如果数据不存在，则需要默认创建一个
     if (!userInfo.username) {
-      createUserData().then((data: User) => {
+      createUserData().then((data: IUser) => {
         setProfile(data);
         localStorage.setItem('userInfo', JSON.stringify(data));
         setIsLoading(false);

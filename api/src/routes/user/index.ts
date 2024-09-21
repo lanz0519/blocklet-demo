@@ -3,10 +3,10 @@ import { body, query, validationResult } from 'express-validator';
 import db from 'lokijs';
 
 import { APIError, APIErrorMsg } from '../../../../constant';
-import { User } from './type.js';
+import { IUser } from './type.js';
 
 const router = Router();
-const users = new db.Collection<User>('users');
+const users = new db.Collection<IUser>('users');
 
 // 验证中间件
 const validate = (req: Request, res: Response, next: NextFunction) => {
